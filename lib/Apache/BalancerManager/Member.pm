@@ -1,6 +1,6 @@
 package Apache::BalancerManager::Member;
 {
-  $Apache::BalancerManager::Member::VERSION = '0.001000';
+  $Apache::BalancerManager::Member::VERSION = '0.001001';
 }
 
 # ABSTRACT: ClientSide representation of Apache BalancerManager Member
@@ -33,7 +33,7 @@ has manager => (
       _balancer_name => 'name',
       _nonce         => 'nonce',
       _url           => 'url',
-      _user_agent    => '_user_agent',
+      _get           => '_get',
    },
 );
 
@@ -54,13 +54,13 @@ sub update {
       b     => $self->_balancer_name,
       nonce => $self->_nonce,
    });
-   $self->_user_agent->get($uri);
+   $self->_get($uri);
 }
 
 1;
 
-
 __END__
+
 =pod
 
 =head1 NAME
@@ -140,4 +140,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

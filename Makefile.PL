@@ -26,7 +26,7 @@ my %WriteMakefileArgs = (
     "URI" => "1.60",
     "Web::Scraper" => "0.37"
   },
-  "VERSION" => "0.001000",
+  "VERSION" => "0.001001",
   "test" => {
     "TESTS" => "t/*.t"
   }

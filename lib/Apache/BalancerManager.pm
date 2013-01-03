@@ -1,6 +1,6 @@
 package Apache::BalancerManager;
 {
-  $Apache::BalancerManager::VERSION = '0.001000';
+  $Apache::BalancerManager::VERSION = '0.001001';
 }
 
 # ABSTRACT: Interact with the Apache BalancerManager
@@ -54,6 +54,18 @@ has _index_content => (
    builder => '_build_index_content',
 );
 
+sub _build_index_content {
+   my $self = shift;
+
+   my $response = $self->_get($self->url);
+   if ($response->is_success) {
+       return $response->decoded_content;
+   }
+   else {
+       die $response->status_line;
+   }
+}
+
 has _scraper => (
    is => 'ro',
    init_arg => undef,
@@ -100,6 +112,7 @@ has _user_agent => (
    lazy => 1,
    init_arg => 'user_agent',
    builder => '_build_user_agent',
+   handles => { _get => 'get' },
 );
 
 sub _build_user_agent { require LWP::UserAgent; LWP::UserAgent->new }
@@ -108,6 +121,7 @@ has _members => (
    is => 'ro',
    # TODO: support passing memebers as either objects or strings that coerce
    init_arg => undef,
+   lazy => 1,
    builder => '_build_members',
 );
 
@@ -135,8 +149,8 @@ sub member_count { scalar @{$_[0]->_members} }
 
 1;
 
-
 __END__
+
 =pod
 
 =head1 NAME
@@ -213,4 +227,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
