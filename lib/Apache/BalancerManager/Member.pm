@@ -1,6 +1,6 @@
 package Apache::BalancerManager::Member;
 {
-  $Apache::BalancerManager::Member::VERSION = '0.001001';
+  $Apache::BalancerManager::Member::VERSION = '0.001002';
 }
 
 # ABSTRACT: ClientSide representation of Apache BalancerManager Member
@@ -59,8 +59,8 @@ sub update {
 
 1;
 
-__END__
 
+__END__
 =pod
 
 =head1 NAME
@@ -140,3 +140,4 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
+
